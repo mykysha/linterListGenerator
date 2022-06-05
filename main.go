@@ -76,9 +76,40 @@ func printLinters(linters []string) error {
 		return fmt.Errorf("file creation: %w", err)
 	}
 
-	writeConfigName("cl run flags", f)
-	f.WriteString("\n")
-	writeConfiguration(linters, "golangci-lint run --disable-all ", "", "-E %s", " ", f)
+	err = writeConfigName("cl run flags", "", "\n\n", f)
+	if err != nil {
+		return fmt.Errorf("writing cl config name: %w", err)
+	}
+
+	err = writeConfiguration(linters, "golangci-lint run --disable-all ", "", "-E %s", " ", f)
+	if err != nil {
+		return fmt.Errorf("writing cl config: %w", err)
+	}
+
+	err = writeConfigName("go-vim config", "\n\n", "\n\n", f)
+	if err != nil {
+		return fmt.Errorf("writing go-vim config name: %w", err)
+	}
+
+	err = writeConfiguration(linters, "let g:go_metalinter_enabled = [", "]", "'%s'", ", ", f)
+	if err != nil {
+		return fmt.Errorf("writing go-vim config: %w", err)
+	}
+
+	err = writeConfigName("yaml config", "\n\n", "\n\n", f)
+	if err != nil {
+		return fmt.Errorf("writing yaml config name: %w", err)
+	}
+
+	err = writeConfiguration(linters, "linters:\n\tdisable-all: true\n\tenable:\n", "", "\t\t- %s", "\n", f)
+	if err != nil {
+		return fmt.Errorf("writing cl config: %w", err)
+	}
+
+	err = f.Close()
+	if err != nil {
+		return fmt.Errorf("closing file: %w", err)
+	}
 
 	return nil
 }
@@ -113,9 +144,13 @@ func writeConfiguration(linters []string, header, footer, style, sep string, f *
 	return nil
 }
 
-// writeConfigName prints beautified version of configuration to the file.
-func writeConfigName(configName string, f *os.File) error {
-	var err error
+// writeConfigName prints beautified version of configuration to the file
+// along with text that should be above or below it.
+func writeConfigName(configName, above, below string, f *os.File) error {
+	_, err := f.WriteString(above)
+	if err != nil {
+		return fmt.Errorf("writing text above name: %w", err)
+	}
 
 	width := 80
 
@@ -136,6 +171,11 @@ func writeConfigName(configName string, f *os.File) error {
 		if err != nil {
 			return fmt.Errorf("writing overlines: %w", err)
 		}
+	}
+
+	_, err = f.WriteString(below)
+	if err != nil {
+		return fmt.Errorf("writing text below name: %w", err)
 	}
 
 	return nil

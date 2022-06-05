@@ -1,4 +1,96 @@
 ________________________________________________________________________________
 cl run flags
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-golangci-lint run --disable-all -E wrapcheck -E unused -E exportloopref -E goconst -E ifshort -E deadcode -E govet -E gofumpt -E prealloc -E revive -E staticcheck -E asciicheck -E forbidigo -E gomnd -E nosprintfhostport -E promlinter -E funlen -E gocognit -E lll -E nonamedreturns -E depguard -E testpackage -E gomodguard -E importas -E bidichk -E gochecknoinits -E gocritic -E godox -E goerr113 -E tenv -E errcheck -E decorder -E exhaustive -E varcheck -E containedctx -E gci -E godot -E dupl -E goimports -E ireturn -E stylecheck -E unconvert -E varnamelen -E durationcheck -E errorlint -E grouper -E misspell -E wsl -E ineffassign -E forcetypeassert -E goprintffuncname -E maintidx -E tagliatelle -E gocyclo -E nestif -E paralleltest -E thelper -E dogsled -E execinquery -E gofmt -E nilnil -E nlreturn -E errname -E gochecknoglobals -E predeclared -E nakedret -E whitespace -E cyclop -E errchkjson -E exhaustruct -E gomoddirectives -E gosec -E gosimple -E typecheck -E goheader -E makezero -E nolintlint
+
+golangci-lint run --disable-all -E gocognit -E gofmt -E nonamedreturns -E tenv -E typecheck -E gochecknoglobals -E wrapcheck -E goconst -E ireturn -E makezero -E nestif -E deadcode -E containedctx -E cyclop -E funlen -E nakedret -E staticcheck -E dogsled -E exhaustruct -E exportloopref -E errname -E exhaustive -E godot -E lll -E predeclared -E wsl -E asciicheck -E durationcheck -E gomoddirectives -E varnamelen -E decorder -E gocritic -E gosec -E maintidx -E errcheck -E unused -E thelper -E paralleltest -E unconvert -E gosimple -E gofumpt -E nosprintfhostport -E nlreturn -E revive -E dupl -E errchkjson -E goheader -E goimports -E prealloc -E promlinter -E testpackage -E govet -E goprintffuncname -E ifshort -E whitespace -E bidichk -E errorlint -E goerr113 -E importas -E gocyclo -E grouper -E nolintlint -E ineffassign -E execinquery -E forcetypeassert -E gochecknoinits -E gci -E gomnd -E misspell -E nilnil -E stylecheck -E varcheck -E godox -E tagliatelle -E depguard -E forbidigo -E gomodguard
+
+________________________________________________________________________________
+go-vim config
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+let g:go_metalinter_enabled = ['gocognit', 'gofmt', 'nonamedreturns', 'tenv', 'typecheck', 'gochecknoglobals', 'wrapcheck', 'goconst', 'ireturn', 'makezero', 'nestif', 'deadcode', 'containedctx', 'cyclop', 'funlen', 'nakedret', 'staticcheck', 'dogsled', 'exhaustruct', 'exportloopref', 'errname', 'exhaustive', 'godot', 'lll', 'predeclared', 'wsl', 'asciicheck', 'durationcheck', 'gomoddirectives', 'varnamelen', 'decorder', 'gocritic', 'gosec', 'maintidx', 'errcheck', 'unused', 'thelper', 'paralleltest', 'unconvert', 'gosimple', 'gofumpt', 'nosprintfhostport', 'nlreturn', 'revive', 'dupl', 'errchkjson', 'goheader', 'goimports', 'prealloc', 'promlinter', 'testpackage', 'govet', 'goprintffuncname', 'ifshort', 'whitespace', 'bidichk', 'errorlint', 'goerr113', 'importas', 'gocyclo', 'grouper', 'nolintlint', 'ineffassign', 'execinquery', 'forcetypeassert', 'gochecknoinits', 'gci', 'gomnd', 'misspell', 'nilnil', 'stylecheck', 'varcheck', 'godox', 'tagliatelle', 'depguard', 'forbidigo', 'gomodguard']
+
+________________________________________________________________________________
+yaml config
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+linters:
+	disable-all: true
+	enable:
+		- gocognit
+		- gofmt
+		- nonamedreturns
+		- tenv
+		- typecheck
+		- gochecknoglobals
+		- wrapcheck
+		- goconst
+		- ireturn
+		- makezero
+		- nestif
+		- deadcode
+		- containedctx
+		- cyclop
+		- funlen
+		- nakedret
+		- staticcheck
+		- dogsled
+		- exhaustruct
+		- exportloopref
+		- errname
+		- exhaustive
+		- godot
+		- lll
+		- predeclared
+		- wsl
+		- asciicheck
+		- durationcheck
+		- gomoddirectives
+		- varnamelen
+		- decorder
+		- gocritic
+		- gosec
+		- maintidx
+		- errcheck
+		- unused
+		- thelper
+		- paralleltest
+		- unconvert
+		- gosimple
+		- gofumpt
+		- nosprintfhostport
+		- nlreturn
+		- revive
+		- dupl
+		- errchkjson
+		- goheader
+		- goimports
+		- prealloc
+		- promlinter
+		- testpackage
+		- govet
+		- goprintffuncname
+		- ifshort
+		- whitespace
+		- bidichk
+		- errorlint
+		- goerr113
+		- importas
+		- gocyclo
+		- grouper
+		- nolintlint
+		- ineffassign
+		- execinquery
+		- forcetypeassert
+		- gochecknoinits
+		- gci
+		- gomnd
+		- misspell
+		- nilnil
+		- stylecheck
+		- varcheck
+		- godox
+		- tagliatelle
+		- depguard
+		- forbidigo
+		- gomodguard
